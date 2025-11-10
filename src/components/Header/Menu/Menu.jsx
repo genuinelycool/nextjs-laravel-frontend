@@ -4,10 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
+import * as Icon from "@phosphor-icons/react/dist/ssr";
 
 const Menu = () => {
   const pathname = usePathname();
   const [fixedHeader, setFixedHeader] = useState(false);
+  const [openMenuMoblie, setOpenMenuMoblie] = useState(false);
 
   return (
     <>
@@ -97,6 +99,33 @@ const Menu = () => {
                 </Link>
               </li>
             </ul>
+          </div>
+
+          <div className="menu-right-block flex items-center">
+            <div className="icon-call">
+              <i className="icon-phone-call text-4xl"></i>
+            </div>
+            <div className="text ml-3">
+              <div className="text caption1">Free Consultancy</div>
+              <div className="number text-button"> +123 456 789 </div>
+            </div>
+
+            <div
+              className="menu-humburger hidden pointer"
+              onClick={() => setOpenMenuMoblie(!openMenuMoblie)}
+            >
+              <Icon.List className="text-2xl" weight="bold" />
+            </div>
+          </div>
+        </div>
+
+        <div id="menu-mobile-block" className={` ${openMenuMoblie && "open"} `}>
+          <div className="menu-mobile-main">
+            <div className="container">
+              <ul>
+                <li>asdfdf</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
