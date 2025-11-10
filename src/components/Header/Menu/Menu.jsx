@@ -122,8 +122,85 @@ const Menu = () => {
         <div id="menu-mobile-block" className={` ${openMenuMoblie && "open"} `}>
           <div className="menu-mobile-main">
             <div className="container">
-              <ul>
-                <li>asdfdf</li>
+              <ul className="menu-nav-mobile h-full pt-1 pb-1">
+                <li
+                  className="nav-item-mobile h-full flex-column 
+                  gap-2 pt-2 pl-3 pr-3 pb-2 pointer"
+                >
+                  <a
+                    className="nav-link-mobile flex items-center 
+                    justify-between"
+                    href="/"
+                  >
+                    <span className="body2 font-bold">Home</span>
+                  </a>
+                </li>
+
+                <li
+                  className="nav-item-mobile h-full flex-column 
+                  gap-2 pt-2 pl-3 pr-3 pb-2 pointer"
+                >
+                  <a
+                    className="nav-link-mobile flex items-center 
+                    justify-between"
+                    href="/about"
+                  >
+                    <span className="body2 font-bold">About Us</span>
+                  </a>
+                </li>
+
+                <li
+                  className="nav-item-mobile h-full flex-column 
+                  gap-2 pt-2 pl-3 pr-3 pb-2 pointer"
+                >
+                  <a
+                    className="nav-link-mobile flex items-center 
+                    justify-between"
+                    href="/service"
+                  >
+                    <span className="body2 font-bold">Our Services</span>
+                  </a>
+                </li>
+
+                <li
+                  className="nav-item-mobile h-full flex-column 
+                  gap-2 pt-2 pl-3 pr-3 pb-2 pointer"
+                >
+                  <a
+                    className="nav-link-mobile flex items-center 
+                    justify-between"
+                    href="/case-studies"
+                  >
+                    <span className="body2 font-bold">Case Studies</span>
+                  </a>
+                </li>
+
+                <li
+                  className="nav-item-mobile h-full flex-column 
+                  gap-2 pt-2 pl-3 pr-3 pb-2 pointer"
+                >
+                  <a
+                    className="nav-link-mobile flex items-center 
+                    justify-between"
+                    href="/blog"
+                  >
+                    <span className="body2 font-bold">Blog</span>
+                  </a>
+                </li>
+
+                <li
+                  className="nav-item-mobile h-full flex-column 
+                  gap-2 pt-2 pl-3 pr-3 pb-2 pointer"
+                >
+                  <a
+                    className="nav-link-mobile flex items-center 
+                    justify-between"
+                    href="/contact"
+                  >
+                    <span className="body2 font-bold">Contact Us</span>
+                  </a>
+                </li>
+
               </ul>
             </div>
           </div>
