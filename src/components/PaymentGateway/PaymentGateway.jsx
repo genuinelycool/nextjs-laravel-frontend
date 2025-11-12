@@ -4,6 +4,7 @@ import { useInView } from "framer-motion";
 import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import * as Icon from "@phosphor-icons/react/dist/ssr";
 
 const PaymentGateway = () => {
   const ref = useRef(null);
@@ -84,6 +85,27 @@ const PaymentGateway = () => {
                 >
                   Get Started
                 </Link>
+
+                <div className="relative">
+                  <Link
+                    className="button-main box-shadow hover:bg-black 
+                    hover:text-white text-on-surface bg-white flex items-center 
+                    gap-2 rounded-full relative z-[1]"
+                    href="/"
+                  >
+                    <Icon.Phone weight="fill" className="text-xl" />
+                    <span className="whitespace-nowrap">(00) 123 123 455</span>
+                  </Link>
+
+                  <Image
+                    src="/images/component/gateway1-dot.png"
+                    className="absolute -right-12 w-[100px] h-auto top-1/2 
+                    -translate-y-1/2"
+                    width={4000}
+                    height={4000}
+                    alt="img"
+                  />
+                </div>
               </div>
             </div>
           </div>
