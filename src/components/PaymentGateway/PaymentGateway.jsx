@@ -3,6 +3,7 @@
 import { useInView } from "framer-motion";
 import React, { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const PaymentGateway = () => {
   const ref = useRef(null);
@@ -36,7 +37,55 @@ const PaymentGateway = () => {
                 opacity: isInView ? 1 : 0,
                 transition: "all 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s",
               }}
-            ></div>
+            >
+              <div className="heading flex items-center gap-4 max-lg:flex-wrap">
+                <div className="flex items-center">
+                  <div
+                    className="img sm:w-12 w-10 sm:h-12 h-10 rounded-full 
+                        overflow-hidden bg-line p-0 z-[3]"
+                  >
+                    <Image
+                      className="full h-full rounded-full"
+                      width={300}
+                      height={300}
+                      src="/images/avatar3.webp"
+                      alt="img"
+                    />
+                  </div>
+                </div>
+
+                <div className="text-button text-secondary">
+                  Trusted by 5M+ People
+                  <br />
+                  Around the globe
+                </div>
+              </div>
+
+              <div className="text lg:mt-14 mt-5">
+                <h3 className="heading3">Payment Gateway Services</h3>
+                <div className="body3 text-secondary lg:mt-6 mt-4">
+                  Experience the excitement and potential of the cryptocurrency
+                  market with our expert trading services. Experience the
+                  excitement and potential of the cryptocurrency market with our
+                  expert trading services.
+                </div>
+              </div>
+
+              <div
+                className="button-block flex items-center 
+                    max-sm:flex-wrap sm:gap-6 gap-3 lg:mt-12 
+                    mt-8 w-fit"
+              >
+                <Link
+                  className="button-main box-shadow bg-blue-700 
+                        hover:bg-black text-white bg-blue whitespace-nowrap 
+                        rounded-full"
+                  href="/"
+                >
+                  Get Started
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
