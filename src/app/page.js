@@ -5,6 +5,7 @@ import Slider from "@/components/Slider/Slider";
 import Image from "next/image";
 import serviceData from "@/data/service.json";
 import PaymentGateway from "@/components/PaymentGateway/PaymentGateway";
+import CaseStudy from "@/components/CaseStudy/CaseStudy";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <Slider />
         <Service data={serviceData} />
         <PaymentGateway />
+        <CaseStudy />
       </main>
     </div>
   );
