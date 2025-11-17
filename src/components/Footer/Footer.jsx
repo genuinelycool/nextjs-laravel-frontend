@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import * as Icon from "@phosphor-icons/react/dist/ssr";
 
 const Footer = () => {
   return (
@@ -213,6 +214,72 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
+            </div>
+          </div>
+
+          <div className="lg:w-1/4">
+            <div className="company-contact">
+              <div className="heading text-button-sm text-white">
+                NewsLetter
+              </div>
+
+              <div className="mt-3 flex items-start">
+                <div className="text">
+                  <div className="caption2 text-surface text-white">
+                    Need Help? 24/7
+                  </div>
+
+                  <div className="fw-700 text-white mt-1">566-888-18181</div>
+                </div>
+              </div>
+
+              <div className="locate mt-3 flex items-center">
+                <div className="caption1 text-surface text-white">
+                  187 21th Street, New York. USA
+                </div>
+              </div>
+
+              <form
+                className="send-block mt-5 flex items-center 
+                h-[45px] rounded-lg overflow-hidden"
+              >
+                <input
+                  className="caption1 text-secondary h-full w-full pr-4 pl-3"
+                  type="text"
+                  placeholder="Your Email Address"
+                />
+                <button
+                  className="flex items-center justify-center w-[45px] 
+                    h-[45px] bg-blue-800 flex-shrink-0"
+                >
+                  <Icon.PaperPlaneTilt className="text-white" />
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-line">
+          <div
+            className="footer-bottom flex items-center justify-between 
+          ppt-3 pb-3"
+          >
+            <div className="left-block flex items-center">
+              <div className="copy-right text-surface caption1 text-white">
+                @2024 EasyTech. All Rights Reserved
+              </div>
+            </div>
+
+            <div className="nav-link flex items-center gap-3 text-white">
+              <a href="#" className="text-surface caption1 hover-underline">
+                Terms of Services
+              </a>
+
+              <span className="text-surface caption1"> | </span>
+
+              <a href="#" className="text-surface caption1 hover-underline">
+                Privacy Policy
+              </a>
             </div>
           </div>
         </div>
