@@ -7,6 +7,7 @@ import serviceData from "@/data/service.json";
 import PaymentGateway from "@/components/PaymentGateway/PaymentGateway";
 import CaseStudy from "@/components/CaseStudy/CaseStudy";
 import PaymentGatewayTwo from "@/components/PaymentGateway/PaymentGatewayTwo";
+import FormRequest from "@/components/FormRequest/FormRequest";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <PaymentGateway />
         <CaseStudy />
         <PaymentGatewayTwo />
+        <FormRequest />
       </main>
     </div>
   );
