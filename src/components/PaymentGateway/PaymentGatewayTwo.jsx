@@ -64,7 +64,7 @@ const PaymentGatewayTwo = () => {
                   <i className="icon-list text-2xl p-4 rounded-2xl bg-red-400"></i>
                   <div className="text">
                     <div className="heading7">2K+</div>
-                    <div className="heading7" text-secondary>
+                    <div className="heading7 text-secondary">
                       Projects
                     </div>
                   </div>
@@ -91,7 +91,7 @@ const PaymentGatewayTwo = () => {
                   <i className="icon-user text-2xl p-4 rounded-2xl bg-red-600"></i>
                   <div className="text">
                     <div className="heading7">6 Years</div>
-                    <div className="heading7" text-secondary>
+                    <div className="heading7 text-secondary">
                       Product Designer
                     </div>
                   </div>
