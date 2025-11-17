@@ -33,8 +33,30 @@ const Testimonial = () => {
                   delay: 4000,
                 }}
               >
-                <SwiperSlide>
-                    
+                <SwiperSlide className="lg:pb-24 pb-20">
+                  <div className="text-2xl font-medium text-center">
+                    {String.raw`"`}
+                    Get personalized financial advice to help reach your
+                    financial goals. Get personalized financial advice to help
+                    reach your financial goals.
+                    {String.raw`"`}
+                  </div>
+                  <div className="text-button text-center mt-5">
+                    John Doe // CEO
+                  </div>
+                </SwiperSlide>
+
+                <SwiperSlide className="lg:pb-24 pb-20">
+                  <div className="text-2xl font-medium text-center">
+                    {String.raw`"`}
+                    Get personalized financial advice to help reach your
+                    financial goals. Get personalized financial advice to help
+                    reach your financial goals.
+                    {String.raw`"`}
+                  </div>
+                  <div className="text-button text-center mt-5">
+                    Jane Doe // Manager
+                  </div>
                 </SwiperSlide>
               </Swiper>
             </div>
