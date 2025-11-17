@@ -11,6 +11,7 @@ const Partner = () => {
           height={5000}
           className="w-full h-full object-cover"
           src="/images/cta/bg-cta1.png"
+          alt="img"
         />
       </div>
 
