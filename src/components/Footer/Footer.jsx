@@ -67,6 +67,154 @@ const Footer = () => {
               </div>
             </div>
           </div>
+
+          <div className="lg:w-1/2">
+            <div className="footer-navigate flex items-center justify-center gap-20">
+              <div className="footer-nav-item">
+                <div className="item-heading text-button-sm text-white">
+                  Quick Links
+                </div>
+
+                <ul className="list-nav mt-1 text-white">
+                  <li className="mt-3">
+                    <Link
+                      className="caption1 has-line-before line-white 
+                        text-surface hover-underline"
+                      href="/"
+                    >
+                      About Us
+                    </Link>
+                  </li>
+
+                  <li className="mt-3">
+                    <Link
+                      className="caption1 has-line-before line-white 
+                        text-surface hover-underline"
+                      href="/"
+                    >
+                      Services
+                    </Link>
+                  </li>
+
+                  <li className="mt-3">
+                    <Link
+                      className="caption1 has-line-before line-white 
+                        text-surface hover-underline"
+                      href="/"
+                    >
+                      Case Studies
+                    </Link>
+                  </li>
+
+                  <li className="mt-3">
+                    <Link
+                      className="caption1 has-line-before line-white 
+                        text-surface hover-underline"
+                      href="/"
+                    >
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="footer-nav-item max-sm:hidden">
+                <div className="item-heading text-button-sm text-white">
+                  Pages
+                </div>
+
+                <ul className="list-nav mt-1 text-white">
+                  <li className="mt-3">
+                    <Link
+                      className="caption1 has-line-before line-white 
+                        text-surface hover-underline"
+                      href="/"
+                    >
+                      About Us
+                    </Link>
+                  </li>
+
+                  <li className="mt-3">
+                    <Link
+                      className="caption1 has-line-before line-white 
+                        text-surface hover-underline"
+                      href="/"
+                    >
+                      Services
+                    </Link>
+                  </li>
+
+                  <li className="mt-3">
+                    <Link
+                      className="caption1 has-line-before line-white 
+                        text-surface hover-underline"
+                      href="/"
+                    >
+                      Case Studies
+                    </Link>
+                  </li>
+
+                  <li className="mt-3">
+                    <Link
+                      className="caption1 has-line-before line-white 
+                        text-surface hover-underline"
+                      href="/"
+                    >
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="footer-nav-item">
+                <div className="item-heading text-button-sm text-white">
+                  Blog
+                </div>
+
+                <ul className="list-nav mt-1 text-white">
+                  <li className="mt-3">
+                    <Link
+                      className="caption1 has-line-before line-white 
+                        text-surface hover-underline"
+                      href="/"
+                    >
+                      All Blog
+                    </Link>
+                  </li>
+
+                  <li className="mt-3">
+                    <Link
+                      className="caption1 has-line-before line-white 
+                        text-surface hover-underline"
+                      href="/"
+                    >
+                      Services
+                    </Link>
+                  </li>
+
+                  <li className="mt-3">
+                    <Link
+                      className="caption1 has-line-before line-white 
+                        text-surface hover-underline"
+                      href="/"
+                    >
+                      Case Studies
+                    </Link>
+                  </li>
+
+                  <li className="mt-3">
+                    <Link
+                      className="caption1 has-line-before line-white 
+                        text-surface hover-underline"
+                      href="/"
+                    >
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
