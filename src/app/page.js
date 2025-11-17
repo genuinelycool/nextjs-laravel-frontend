@@ -8,6 +8,7 @@ import PaymentGateway from "@/components/PaymentGateway/PaymentGateway";
 import CaseStudy from "@/components/CaseStudy/CaseStudy";
 import PaymentGatewayTwo from "@/components/PaymentGateway/PaymentGatewayTwo";
 import FormRequest from "@/components/FormRequest/FormRequest";
+import Testimonial from "@/components/Testimonial/Testimonial";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <CaseStudy />
         <PaymentGatewayTwo />
         <FormRequest />
+        <Testimonial />
       </main>
     </div>
   );
