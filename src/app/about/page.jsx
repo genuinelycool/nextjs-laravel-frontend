@@ -4,7 +4,10 @@ import TopNav from "@/components/Header/TopNav/TopNav";
 import Partner from "@/components/Partner/Partner";
 import AboutSection from "@/components/Section/AboutSection";
 import Breadcrumb from "@/components/Section/Breadcrumb";
+import Counter from "@/components/Section/Counter";
+import Service from "@/components/Service/Service";
 import React from "react";
+import serviceData from "@/data/service.json";
 
 const AboutPage = () => {
   return (
@@ -23,6 +26,8 @@ const AboutPage = () => {
         />
 
         <AboutSection />
+        <Counter className="lg:pb-[50] sm:pb-16 pb-10" />
+        <Service data={serviceData} className="pb-10" />
       </main>
 
       <Partner className="lg:mt-[100px] sm:mt-16 mt-10" />
