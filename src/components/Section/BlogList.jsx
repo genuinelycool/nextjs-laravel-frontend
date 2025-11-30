@@ -14,7 +14,10 @@ const BlogList = ({ data }) => {
                 <Link
                   className="blog-item flex max-md:flex-col md:items-center 
                     gap-7 gap-y-5"
-                  href="/"
+                  href={"/blog/blog-details/[slug]"}
+                  as={`/blog/blog-details/${item.title
+                    .toLowerCase()
+                    .replace(/ /g, "-")}`}
                 >
                   <div className="w-full md:w-1/2">
                     <div className="bg-img w-full overflow-hidden rounded-2xl">
@@ -112,7 +115,10 @@ const BlogList = ({ data }) => {
                     key={index}
                     className="recent-post-item flex items-start 
                       gap-4 cursor-pointer"
-                    href="/"
+                    href={"/blog/blog-details/[slug]"}
+                    as={`/blog/blog-details/${item.title
+                      .toLowerCase()
+                      .replace(/ /g, "-")}`}
                   >
                     <div className="item-img flex-shrink-0 w-20 h-20 rounded">
                       <Image
