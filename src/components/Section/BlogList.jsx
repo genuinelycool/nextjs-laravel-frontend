@@ -59,6 +59,63 @@ const BlogList = ({ data }) => {
               ))}
             </div>
           </div>
+
+          <div className="w-full lg:w-1/3 lg:pl-[55px]">
+            <div className="search-block rounded-lg bg-surface h-[50px] relative">
+              <input
+                className="rounded-lg bg-surface w-full h-full pl-4 
+                  pr-12 bg-slate-100"
+                type="text"
+                placeholder="Search"
+              />
+              <Icon.MagnifyingGlass
+                className="absolute top-1/2 -translate-y-1/2 
+                  right-4 text-xl cursor-pointer"
+              />
+            </div>
+
+            <div className="cate-block md:mt-10 mt-6">
+              <div className="heading5">Blog Category</div>
+
+              <div className="list-nav mt-4">
+                <Link
+                  className="nav-item"
+                  href="/"
+                >
+                  <div className="text-button text-secondary mt-2">
+                    payment solution
+                  </div>
+                </Link>
+
+                <Link
+                  className="nav-item"
+                  href="/"
+                >
+                  <div className="text-button text-secondary mt-2">
+                    online banking
+                  </div>
+                </Link>
+
+                <Link
+                  className="nav-item"
+                  href="/"
+                >
+                  <div className="text-button text-secondary mt-2">
+                    personal finance
+                  </div>
+                </Link>
+
+                <Link
+                  className="nav-item"
+                  href="/"
+                >
+                  <div className="text-button text-secondary mt-2">
+                    financial planning
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
