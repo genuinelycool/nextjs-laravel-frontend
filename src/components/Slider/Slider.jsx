@@ -1,14 +1,35 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import * as Icon from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import Link from "next/link";
 import "swiper/css/bundle";
+import { API_BASE_URL } from "@/config/config";
 
 const Slider = () => {
+  const [sliders, setSliders] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  console.log(sliders);
+
+  useEffect(() => {
+    const fetchItem = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/sliders`);
+        const data = await response.json();
+        setSliders(data);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchItem();
+  }, []);
+
   return (
     <>
       <div className="slider-block">
