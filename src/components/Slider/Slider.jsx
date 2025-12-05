@@ -68,7 +68,7 @@ const Slider = () => {
                         src={`${IMAGE_BASE_URL}/${slider.image}`}
                         width={4000}
                         height={3000}
-                        alt="slider1"
+                        alt={slider.heading}
                         priority={true}
                         className="w-full h-full object-cover"
                       />
@@ -79,34 +79,22 @@ const Slider = () => {
                         <div className="heading2">
                           <div className="relative overflow-hidden">
                             <span className="block relative overflow-hidden">
-                              Simplify and Secure
+                              {slider.heading}
                             </span>
                             <span className="block absolute top-0 left-0 w-full h-full">
-                              Simplify and Secure
-                            </span>
-                          </div>
-
-                          <div className="relative overflow-hidden">
-                            <span className="block relative overflow-hidden">
-                              Our Solution
-                            </span>
-                            <span className="block absolute top-0 left-0 w-full h-full">
-                              Our Solution
+                              {slider.heading}
                             </span>
                           </div>
                         </div>
 
                         <div className="body2 mt-3 text-secondary">
-                          Empower your business with our innovative solutions,
-                          Empower your business with our innovative solutions,
-                          <br />
-                          Empower your business with our innovative solutions,
+                          {slider.description}
                         </div>
 
                         <div className="button-block md:mt-10 mt-6">
                           <Link
                             className="button-main bg-blue-700 text-white hover:bg-blue-500"
-                            href="/service"
+                            href={slider.link}
                           >
                             Discovery Now
                           </Link>
