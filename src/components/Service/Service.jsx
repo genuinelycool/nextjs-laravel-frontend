@@ -4,6 +4,7 @@ import { useInView } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import ServiceItem from "./Item/ServiceItem";
 import { API_BASE_URL } from "@/config/config";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Service = () => {
   const ref = useRef(null);
@@ -12,7 +13,7 @@ const Service = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log(services);
+  // console.log(services);
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -37,19 +38,26 @@ const Service = () => {
       >
         <div className="container">
           <h3 className="heading3 text-center">Our Services</h3>
-          <div
-            className="list-service grid lg:grid-cols-3 sm:grid-cols-2 
-          gap-8 md:mt-10 mt-6 gap-y-10"
-            style={{
-              transform: isInView ? "none" : "translateY(60px)",
-              opacity: isInView ? 1 : 0,
-              transition: "all 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s",
-            }}
-          >
-            {services.slice(0, 6).map((item, index) => (
-              <ServiceItem data={item} key={index} number={index} />
-            ))}
-          </div>
+
+          {loading ? (
+            <div className="flex justify-center items-center h-[500px]">
+              <ClipLoader color="#3498db" size={50} />
+            </div>
+          ) : (
+            <div
+              className="list-service grid lg:grid-cols-3 sm:grid-cols-2 
+              gap-8 md:mt-10 mt-6 gap-y-10"
+              style={{
+                transform: isInView ? "none" : "translateY(60px)",
+                opacity: isInView ? 1 : 0,
+                transition: "all 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s",
+              }}
+            >
+              {services.slice(0, 6).map((item, index) => (
+                <ServiceItem data={item} key={index} number={index} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>
