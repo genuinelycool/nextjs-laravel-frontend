@@ -24,7 +24,7 @@ const ServiceDetails = ({ params }) => {
   const [serviceDetails, setServiceDetails] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log(serviceDetails);
+  // console.log(serviceDetails);
 
   useEffect(() => {
     if (slug) {
