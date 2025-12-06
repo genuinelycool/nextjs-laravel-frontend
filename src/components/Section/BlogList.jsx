@@ -44,6 +44,15 @@ const BlogList = () => {
     fetchCatItem();
   }, []);
 
+  const getTextFromHTML = (html, limit = 300) => {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+
+    const text = div.textContent || div.innerText || "";
+
+    return text.length > limit ? text.substring(0, limit) + "..." : text;
+  };
+
   return (
     <div className="list-blog lg:py-[100px] sm:py-16 py-10">
       <div className="container">
@@ -97,7 +106,7 @@ const BlogList = () => {
                         <div className="date flex items-center gap-4 mt-2">
                           <div className="author catption2 text-secondary">
                             By
-                            <span className="text-onsurface">Admin</span>
+                            <span className="text-onsurface"> Admin</span>
                           </div>
 
                           <div className="item-date flex items-center">
@@ -109,7 +118,7 @@ const BlogList = () => {
                         </div>
 
                         <div className="body3 text-secondary mt-4 pb-4">
-                          {item.long_descp}
+                          {getTextFromHTML(item.long_descp)}
                         </div>
 
                         <div className="read font-bold underline">
@@ -141,29 +150,11 @@ const BlogList = () => {
               <div className="heading5">Blog Category</div>
 
               <div className="list-nav mt-4">
-                <Link className="nav-item" href="/">
+                {categories.map((cat) => (
                   <div className="text-button text-secondary mt-2">
-                    payment solution
+                    {cat.blog_category}
                   </div>
-                </Link>
-
-                <Link className="nav-item" href="/">
-                  <div className="text-button text-secondary mt-2">
-                    online banking
-                  </div>
-                </Link>
-
-                <Link className="nav-item" href="/">
-                  <div className="text-button text-secondary mt-2">
-                    personal finance
-                  </div>
-                </Link>
-
-                <Link className="nav-item" href="/">
-                  <div className="text-button text-secondary mt-2">
-                    financial planning
-                  </div>
-                </Link>
+                ))}
               </div>
             </div>
 
