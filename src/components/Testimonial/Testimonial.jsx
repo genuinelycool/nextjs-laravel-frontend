@@ -11,7 +11,7 @@ const Testimonial = () => {
   const [testimonial, setTestimonial] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log(testimonial);
+  // console.log(testimonial);
 
   useEffect(() => {
     const fetchItem = async () => {
