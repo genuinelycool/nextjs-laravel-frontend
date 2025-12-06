@@ -1,66 +1,126 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Icon from "@phosphor-icons/react/dist/ssr";
+import { API_BASE_URL, IMAGE_BASE_URL } from "@/config/config";
+import ClipLoader from "react-spinners/ClipLoader";
 
-const BlogList = ({ data }) => {
+const BlogList = () => {
+  const [blog, setBlog] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // console.log(sliders);
+
+  useEffect(() => {
+    const fetchItem = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/allblog`);
+        const data = await response.json();
+        setBlog(data);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchItem();
+  }, []);
+
+  useEffect(() => {
+    const fetchCatItem = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/blogcat`);
+        const data = await response.json();
+        setCategories(data);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCatItem();
+  }, []);
+
   return (
     <div className="list-blog lg:py-[100px] sm:py-16 py-10">
       <div className="container">
         <div className="flex max-lg:flex-col gap-y-10">
           <div className="w-full lg:w-2/3">
-            <div className="list flex flex-col gap-y-10">
-              {data.slice(0, 5).map((item, index) => (
-                <Link
-                  className="blog-item flex max-md:flex-col md:items-center 
-                    gap-7 gap-y-5"
-                  href={"/blog/blog-details/[slug]"}
-                  as={`/blog/blog-details/${item.title
-                    .toLowerCase()
-                    .replace(/ /g, "-")}`}
-                >
-                  <div className="w-full md:w-1/2">
-                    <div className="bg-img w-full overflow-hidden rounded-2xl">
-                      <Image
-                        width={5000}
-                        height={5000}
-                        className="w-full h-full block"
-                        src={item.img}
-                      />
-                    </div>
-                  </div>
+            {loading ? (
+              <div className="flex justify-center items-center h-[500px]">
+                <ClipLoader color="#3498db" size={50} />
+              </div>
+            ) : (
+              <div className="list flex flex-col gap-y-10">
+                {blog.slice(0, 6).map((item, index) => {
+                  const formattedDate = new Date(
+                    item.created_at
+                  ).toLocaleDateString("en-US", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  });
 
-                  <div className="w-full wd:w-1/2">
-                    <div
-                      className="caption2 py-1 px-3 bg-surface rounded-full 
-                        inline-block capitalize bg-slate-100"
+                  return (
+                    <Link
+                      className="blog-item flex max-md:flex-col md:items-center 
+                          gap-7 gap-y-5"
+                      href={"/blog/blog-details/[slug]"}
+                      as={`/blog/blog-details/${item.post_slug
+                        .toLowerCase()
+                        .replace(/ /g, "-")}`}
                     >
-                      {item.category}
-                    </div>
-
-                    <div className="heading6 mt-2">{item.title}</div>
-
-                    <div className="date flex items-center gap-4 mt-2">
-                      <div className="author catption2 text-secondary">
-                        By
-                        <span className="text-onsurface">{item.author}</span>
+                      <div className="w-full md:w-1/2">
+                        <div className="bg-img w-full overflow-hidden rounded-2xl">
+                          <Image
+                            width={5000}
+                            height={5000}
+                            className="w-full h-full block"
+                            src={`${IMAGE_BASE_URL}/${item.image}`}
+                          />
+                        </div>
                       </div>
 
-                      <div className="item-date flex items-center">
-                        <Icon.CalendarBlank weight="bold" />
-                        <span className="ml-1 catption2">{item.date}</span>
+                      <div className="w-full wd:w-1/2">
+                        <div
+                          className="caption2 py-1 px-3 bg-surface rounded-full 
+                              inline-block capitalize bg-slate-100"
+                        >
+                          {item.category_name}
+                        </div>
+
+                        <div className="heading6 mt-2">{item.post_title}</div>
+
+                        <div className="date flex items-center gap-4 mt-2">
+                          <div className="author catption2 text-secondary">
+                            By
+                            <span className="text-onsurface">Admin</span>
+                          </div>
+
+                          <div className="item-date flex items-center">
+                            <Icon.CalendarBlank weight="bold" />
+                            <span className="ml-1 catption2">
+                              {formattedDate}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="body3 text-secondary mt-4 pb-4">
+                          {item.long_descp}
+                        </div>
+
+                        <div className="read font-bold underline">
+                          Read More
+                        </div>
                       </div>
-                    </div>
-
-                    <div className="body3 text-secondary mt-4 pb-4">
-                      {item.desc}
-                    </div>
-
-                    <div className="read font-bold underline">Read More</div>
-                  </div>
-                </Link>
-              ))}
-            </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           <div className="w-full lg:w-1/3 lg:pl-[55px]">
@@ -110,13 +170,13 @@ const BlogList = ({ data }) => {
             <div className="recent-post-block md:mt-10 mt-6">
               <div className="recent-post-heading heading7">Recent Post</div>
               <div className="list-recent-post flex flex-col gap-6 mt-4">
-                {data.slice(0, 3).map((item, index) => (
+                {blog.slice(0, 3).map((item, index) => (
                   <Link
                     key={index}
                     className="recent-post-item flex items-start 
                       gap-4 cursor-pointer"
                     href={"/blog/blog-details/[slug]"}
-                    as={`/blog/blog-details/${item.title
+                    as={`/blog/blog-details/${item.post_slug
                       .toLowerCase()
                       .replace(/ /g, "-")}`}
                   >
@@ -124,7 +184,7 @@ const BlogList = ({ data }) => {
                       <Image
                         width={5000}
                         height={5000}
-                        src={item.img}
+                        src={`${IMAGE_BASE_URL}/${item.image}`}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -132,10 +192,19 @@ const BlogList = ({ data }) => {
                     <div className="item-infor w-full">
                       <div className="item-date flex items-center">
                         <Icon.CalendarBlank weight="bold" />
-                        <span className="ml-1 catption2">{item.date}</span>
+                        <span className="ml-1 catption2">
+                          {new Date(item.created_at).toLocaleDateString(
+                            "en-US",
+                            {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                            }
+                          )}
+                        </span>
                       </div>
 
-                      <div className="item-title mt-1">{item.title}</div>
+                      <div className="item-title mt-1">{item.post_title}</div>
                     </div>
                   </Link>
                 ))}
