@@ -1,14 +1,41 @@
+"use client";
+
 import Footer from "@/components/Footer/Footer";
 import Menu from "@/components/Header/Menu/Menu";
 import TopNav from "@/components/Header/TopNav/TopNav";
 import Partner from "@/components/Partner/Partner";
 import Breadcrumb from "@/components/Section/Breadcrumb";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import serviceData from "@/data/service.json";
 import Image from "next/image";
 import Link from "next/link";
+import { API_BASE_URL } from "@/config/config";
 
-const ServiceDetails = () => {
+const ServiceDetails = ({ params }) => {
+  const { slug } = params;
+
+  const [serviceDetails, setServiceDetails] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  console.log(serviceDetails);
+
+  useEffect(() => {
+    if (slug) {
+      const fetchItem = async () => {
+        try {
+          const response = await fetch(`${API_BASE_URL}/service/${slug}`);
+          const data = await response.json();
+          setServiceDetails(data);
+        } catch (error) {
+          console.error("Error fetching data", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchItem();
+    }
+  }, [slug]);
+
   return (
     <div className="overflow-x-hidden">
       <header id="header">
