@@ -1,14 +1,35 @@
 "use client";
 
 import { useInView } from "framer-motion";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import * as Icon from "@phosphor-icons/react/dist/ssr";
+import { API_BASE_URL, IMAGE_BASE_URL } from "@/config/config";
 
 const PaymentGateway = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+
+  const [gatewayone, setGatewayone] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  console.log(gatewayone);
+
+  useEffect(() => {
+    const fetchItem = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/gatewayone`);
+        const data = await response.json();
+        setGatewayone(data);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchItem();
+  }, []);
 
   return (
     <div>
@@ -21,7 +42,7 @@ const PaymentGateway = () => {
                 h-full flex-shrink-0"
         >
           <Image
-            src="/images/gateway1.webp"
+            src={`${IMAGE_BASE_URL}/${gatewayone.image}`}
             width={5000}
             height={5000}
             alt="img"
@@ -63,12 +84,9 @@ const PaymentGateway = () => {
               </div>
 
               <div className="text lg:mt-14 mt-5">
-                <h3 className="heading3">Payment Gateway Services</h3>
+                <h3 className="heading3">{gatewayone.title}</h3>
                 <div className="body3 text-secondary lg:mt-6 mt-4">
-                  Experience the excitement and potential of the cryptocurrency
-                  market with our expert trading services. Experience the
-                  excitement and potential of the cryptocurrency market with our
-                  expert trading services.
+                  {gatewayone.description}
                 </div>
               </div>
 
@@ -94,7 +112,9 @@ const PaymentGateway = () => {
                     href="/"
                   >
                     <Icon.Phone weight="fill" className="text-xl" />
-                    <span className="whitespace-nowrap">(00) 123 123 455</span>
+                    <span className="whitespace-nowrap">
+                      {gatewayone.phone}
+                    </span>
                   </Link>
 
                   <Image
