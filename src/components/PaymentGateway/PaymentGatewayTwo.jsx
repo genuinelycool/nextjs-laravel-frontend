@@ -1,14 +1,35 @@
 "use client";
 
 import { useInView } from "framer-motion";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import * as Icon from "@phosphor-icons/react/dist/ssr";
+import { API_BASE_URL, IMAGE_BASE_URL } from "@/config/config";
 
 const PaymentGatewayTwo = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+
+  const [gatewaytwo, setGatewaytwo] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  console.log(gatewaytwo);
+
+  useEffect(() => {
+    const fetchItem = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/gatewaytwo`);
+        const data = await response.json();
+        setGatewaytwo(data);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchItem();
+  }, []);
 
   return (
     <div>
@@ -20,12 +41,9 @@ const PaymentGatewayTwo = () => {
         <div className="container">
           <div className="content flex items-center gap-8">
             <div className="w-full xl:w-5/12 flex flex-col gap-y-6">
-              <h3 className="heading3">Payment Gateway Services</h3>
+              <h3 className="heading3">{gatewaytwo.title}</h3>
               <div className="body3 text-secondary">
-                Experience the excitement and potential of the cryptocurrency
-                market with our expert trading services. Experience the
-                excitement and potential of the cryptocurrency market with our
-                expert trading services.
+                {gatewaytwo.description}
               </div>
 
               <div className="button-block">
@@ -53,7 +71,7 @@ const PaymentGatewayTwo = () => {
                     width={5000}
                     height={5000}
                     className="w-full"
-                    src="/images/gateway2-bg.webp"
+                    src={`${IMAGE_BASE_URL}/${gatewaytwo.image}`}
                     alt="image"
                   />
                 </div>
@@ -63,10 +81,8 @@ const PaymentGatewayTwo = () => {
                 >
                   <i className="icon-list text-2xl p-4 rounded-2xl bg-red-400"></i>
                   <div className="text">
-                    <div className="heading7">2K+</div>
-                    <div className="heading7 text-secondary">
-                      Projects
-                    </div>
+                    <div className="heading7">{gatewaytwo.project}K+</div>
+                    <div className="heading7 text-secondary">Projects</div>
                   </div>
                 </div>
 
@@ -79,7 +95,7 @@ const PaymentGatewayTwo = () => {
                     className="text-yellow-600 text-3xl"
                   />
                   <div className="text">
-                    <div className="heading7">4.8</div>
+                    <div className="heading7">{gatewaytwo.review}</div>
                     <div className="heading7 text-secondary">Satisfaction</div>
                   </div>
                 </div>
@@ -90,13 +106,14 @@ const PaymentGatewayTwo = () => {
                 >
                   <i className="icon-user text-2xl p-4 rounded-2xl bg-red-600"></i>
                   <div className="text">
-                    <div className="heading7">6 Years</div>
+                    <div className="heading7">
+                      {gatewaytwo.experience} Years
+                    </div>
                     <div className="heading7 text-secondary">
                       Product Designer
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
