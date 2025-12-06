@@ -10,7 +10,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 const BlogList = () => {
   const [blog, setBlog] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState([null]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // console.log(sliders);
@@ -52,8 +52,8 @@ const BlogList = () => {
     fetchCatItem();
   }, []);
 
-  const handleCategoryClick = (categoryID) => {
-    setSelectedCategory(categoryID);
+  const handleCategoryClick = (categoryId) => {
+    setSelectedCategory(categoryId);
   };
 
   const getTextFromHTML = (html, limit = 300) => {
@@ -80,15 +80,14 @@ const BlogList = () => {
                   const formattedDate = new Date(
                     item.created_at
                   ).toLocaleDateString("en-US", {
-                    day: "numeric",
-                    month: "long",
                     year: "numeric",
+                    month: "long",
+                    day: "numeric",
                   });
 
                   return (
                     <Link
-                      className="blog-item flex max-md:flex-col md:items-center 
-                          gap-7 gap-y-5"
+                      className="blog-item flex max-md:flex-col md:items-center gap-7 gap-y-5"
                       href={"/blog/blog-details/[slug]"}
                       as={`/blog/blog-details/${item.post_slug
                         .toLowerCase()
@@ -105,25 +104,21 @@ const BlogList = () => {
                         </div>
                       </div>
 
-                      <div className="w-full wd:w-1/2">
-                        <div
-                          className="caption2 py-1 px-3 bg-surface rounded-full 
-                              inline-block capitalize bg-slate-100"
-                        >
+                      <div className="w-full md:w-1/2">
+                        <div className="caption2 py-1 px-3 bg-surface rounded-full inline-block capitalize bg-slate-100">
                           {item.category_name}
                         </div>
 
                         <div className="heading6 mt-2">{item.post_title}</div>
 
                         <div className="date flex items-center gap-4 mt-2">
-                          <div className="author catption2 text-secondary">
-                            By
-                            <span className="text-onsurface"> Admin</span>
+                          <div className="author caption2 text-secondary">
+                            By <span className="text-onsurface">Admin</span>
                           </div>
 
                           <div className="item-date flex items-center">
                             <Icon.CalendarBlank weight="bold" />
-                            <span className="ml-1 catption2">
+                            <span className="ml-1 caption2">
                               {formattedDate}
                             </span>
                           </div>
@@ -147,25 +142,21 @@ const BlogList = () => {
           <div className="w-full lg:w-1/3 lg:pl-[55px]">
             <div className="search-block rounded-lg bg-surface h-[50px] relative">
               <input
-                className="rounded-lg bg-surface w-full h-full pl-4 
-                  pr-12 bg-slate-100"
+                className="rounded-lg bg-surface w-full h-full pl-4 pr-12 bg-slate-100"
                 type="text"
                 placeholder="Search"
               />
-              <Icon.MagnifyingGlass
-                className="absolute top-1/2 -translate-y-1/2 
-                  right-4 text-xl cursor-pointer"
-              />
+              <Icon.MagnifyingGlass className="absolute top-1/2 -translate-y-1/2 right-4 text-xl cursor-pointer" />
             </div>
 
             <div className="cate-block md:mt-10 mt-6">
-              <div className="heading5">Blog Category</div>
+              <div className="heading6">Blog Category</div>
 
               <div className="list-nav mt-4">
                 <div
                   className={`text-button text-secondary mt-2 cursor-pointer ${
                     selectedCategory === null ? "font-extrabold" : ""
-                  } `}
+                  }`}
                   onClick={() => handleCategoryClick(null)}
                 >
                   All Category
@@ -176,7 +167,7 @@ const BlogList = () => {
                     key={cat.id}
                     className={`text-button text-secondary mt-2 cursor-pointer ${
                       selectedCategory === cat.id ? "font-extrabold" : ""
-                    } `}
+                    }`}
                     onClick={() => handleCategoryClick(cat.id)}
                   >
                     {cat.blog_category}
@@ -191,8 +182,7 @@ const BlogList = () => {
                 {blog.slice(0, 3).map((item, index) => (
                   <Link
                     key={index}
-                    className="recent-post-item flex items-start 
-                      gap-4 cursor-pointer"
+                    className="recent-post-item flex items-start gap-4 cursor-pointer"
                     href={"/blog/blog-details/[slug]"}
                     as={`/blog/blog-details/${item.post_slug
                       .toLowerCase()
@@ -210,13 +200,13 @@ const BlogList = () => {
                     <div className="item-infor w-full">
                       <div className="item-date flex items-center">
                         <Icon.CalendarBlank weight="bold" />
-                        <span className="ml-1 catption2">
+                        <span className="ml-1 caption2">
                           {new Date(item.created_at).toLocaleDateString(
                             "en-US",
                             {
-                              day: "numeric",
-                              month: "long",
                               year: "numeric",
+                              month: "long",
+                              day: "numeric",
                             }
                           )}
                         </span>
