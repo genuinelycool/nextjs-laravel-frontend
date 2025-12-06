@@ -1,11 +1,33 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css/bundle";
+import { API_BASE_URL } from "@/config/config";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Testimonial = () => {
+  const [testimonial, setTestimonial] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  console.log(testimonial);
+
+  useEffect(() => {
+    const fetchItem = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/gettestimonial`);
+        const data = await response.json();
+        setTestimonial(data);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchItem();
+  }, []);
+
   return (
     <>
       <div className="testimonial-block bg-slate-100">
@@ -21,44 +43,37 @@ const Testimonial = () => {
                 Trusted By Professionals
               </div>
 
-              <Swiper
-                spaceBetween={16}
-                slidesPerView={1}
-                loop={true}
-                pagination={{ clickable: true }}
-                speed={400}
-                modules={[Pagination, Autoplay, Navigation]}
-                className="h-full relative lg:mt-10 mt-7"
-                autoplay={{
-                  delay: 4000,
-                }}
-              >
-                <SwiperSlide className="lg:pb-24 pb-20">
-                  <div className="text-2xl font-medium text-center">
-                    {String.raw`"`}
-                    Get personalized financial advice to help reach your
-                    financial goals. Get personalized financial advice to help
-                    reach your financial goals.
-                    {String.raw`"`}
-                  </div>
-                  <div className="text-button text-center mt-5">
-                    John Doe // CEO
-                  </div>
-                </SwiperSlide>
-
-                <SwiperSlide className="lg:pb-24 pb-20">
-                  <div className="text-2xl font-medium text-center">
-                    {String.raw`"`}
-                    Get personalized financial advice to help reach your
-                    financial goals. Get personalized financial advice to help
-                    reach your financial goals.
-                    {String.raw`"`}
-                  </div>
-                  <div className="text-button text-center mt-5">
-                    Jane Doe // Manager
-                  </div>
-                </SwiperSlide>
-              </Swiper>
+              {loading ? (
+                <div className="flex justify-center items-center h-[500px]">
+                  <ClipLoader color="#3498db" size={50} />
+                </div>
+              ) : (
+                <Swiper
+                  spaceBetween={16}
+                  slidesPerView={1}
+                  loop={true}
+                  pagination={{ clickable: true }}
+                  speed={400}
+                  modules={[Pagination, Autoplay, Navigation]}
+                  className="h-full relative lg:mt-10 mt-7"
+                  autoplay={{
+                    delay: 4000,
+                  }}
+                >
+                  {testimonial.slice(0, 3).map((item, index) => (
+                    <SwiperSlide className="lg:pb-24 pb-20">
+                      <div className="text-2xl font-medium text-center">
+                        {String.raw`"`}
+                        {item.message}
+                        {String.raw`"`}
+                      </div>
+                      <div className="text-button text-center mt-5">
+                        {item.name} // {item.position}
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              )}
             </div>
           </div>
         </div>
