@@ -24,7 +24,7 @@ export default function Home() {
 
       <main className="content">
         <Slider />
-        <Service data={serviceData} />
+        <Service />
         <PaymentGateway />
         <CaseStudy />
         <PaymentGatewayTwo />
