@@ -11,13 +11,32 @@ import Service from "@/components/Service/Service";
 import React, { useEffect, useState } from "react";
 import serviceData from "@/data/service.json";
 import Loader from "@/components/Loader/Loader";
+import { API_BASE_URL } from "@/config/config";
 
 const AboutPage = () => {
   const [loading, setLoading] = useState(true);
+  const [aboutpage, setAboutpage] = useState([]);
+
+  console.log(aboutpage);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const fetchItem = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/aboutpage`);
+        const data = await response.json();
+        setAboutpage(data);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchItem();
   }, []);
 
   return (
@@ -41,9 +60,9 @@ const AboutPage = () => {
               desc="The jobs report soundly beat expectations, with job gains broadly spread across the economy and about 60% higher"
             />
 
-            <AboutSection />
-            <Counter className="lg:pb-[50] sm:pb-16 pb-10" />
-            <Service data={serviceData} />
+            <AboutSection about={aboutpage} />
+            <Counter about={aboutpage} className="lg:pb-[50] sm:pb-16 pb-10" />
+            <Service />
           </>
         )}
       </main>
