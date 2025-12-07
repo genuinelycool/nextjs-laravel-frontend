@@ -8,6 +8,7 @@ import Breadcrumb from "@/components/Section/Breadcrumb";
 import React, { useState } from "react";
 import Image from "next/image";
 import * as Icon from "@phosphor-icons/react/dist/ssr";
+import { API_BASE_URL } from "@/config/config";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -29,6 +30,45 @@ const ContactPage = () => {
       ...formData,
       [name]: value,
     });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSuccessMessage("");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.error
+            ? JSON.stringify(errorData.error)
+            : "Something went wrong"
+        );
+      }
+
+      setSuccessMessage("Message sent successfully!");
+
+      setFormData({
+        name: "",
+        subject: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      setErrorMessage("failed to send message!");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -173,7 +213,10 @@ const ContactPage = () => {
               </div>
 
               <div className="w-full xl:w-3/5 xl:pl-20">
-                <form className="form-block flex flex-col justify-between gap-5">
+                <form
+                  onSubmit={handleSubmit}
+                  className="form-block flex flex-col justify-between gap-5"
+                >
                   <div className="heading">
                     <div className="heading5">Request a message</div>
                     <div className="body3 text-secondary mt-2">
