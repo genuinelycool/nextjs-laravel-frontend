@@ -1,13 +1,36 @@
+"use client";
+
 import Footer from "@/components/Footer/Footer";
 import Menu from "@/components/Header/Menu/Menu";
 import TopNav from "@/components/Header/TopNav/TopNav";
 import Partner from "@/components/Partner/Partner";
 import Breadcrumb from "@/components/Section/Breadcrumb";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import * as Icon from "@phosphor-icons/react/dist/ssr";
 
 const ContactPage = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    subject: "",
+    email: "",
+    message: "",
+  });
+
+  console.log(formData);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
   return (
     <div className="overflow-x-hidden">
       <header id="header">
@@ -154,15 +177,24 @@ const ContactPage = () => {
                   <div className="heading">
                     <div className="heading5">Request a message</div>
                     <div className="body3 text-secondary mt-2">
-                      We will get back to you soon...
+                      We will get back to you within 24 hours
                     </div>
                   </div>
+
+                  {successMessage && (
+                    <p className="text-green-800">{successMessage}</p>
+                  )}
+                  {errorMessage && (
+                    <p className="text-red-800">{errorMessage}</p>
+                  )}
 
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div className="w-full">
                       <input
                         type="text"
                         name="name"
+                        value={formData.name}
+                        onChange={handleChange}
                         placeholder="Name"
                         className="w-full bg-slate-100 text-secondary caption1 
                           px-4 py-3 rounded-lg"
@@ -173,6 +205,8 @@ const ContactPage = () => {
                       <input
                         type="text"
                         name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
                         placeholder="Subject"
                         className="w-full bg-slate-100 text-secondary caption1 
                           px-4 py-3 rounded-lg"
@@ -183,6 +217,8 @@ const ContactPage = () => {
                       <input
                         type="email"
                         name="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         placeholder="Email"
                         className="w-full bg-slate-100 text-secondary caption1 
                           px-4 py-3 rounded-lg"
@@ -194,6 +230,8 @@ const ContactPage = () => {
                         name="message"
                         id="message"
                         rows={4}
+                        value={formData.message}
+                        onChange={handleChange}
                         placeholder="Your Message"
                         className="w-full bg-slate-100 text-secondary caption1 
                           px-4 py-3 rounded-lg"
@@ -202,10 +240,12 @@ const ContactPage = () => {
 
                     <div className="button-block">
                       <button
+                        type="submit"
                         className="button-main hover:border-blue-800 bg-blue-500 
                         text-white text-button rounded-full"
+                        disabled={isSubmitting}
                       >
-                        Send Message
+                        {isSubmitting ? "Sending..." : "Send Message"}
                       </button>
                     </div>
                   </div>
