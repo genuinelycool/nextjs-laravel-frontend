@@ -10,7 +10,7 @@ const nextConfig = {
       },
       {
         protocol: "http",
-        hostname: process.env.NEXT_LOCAL_BACKEND_DOMAIN,
+        hostname: process.env.NEXT_LOCAL_BACKEND_DOMAIN || "localhost",
         pathname: "/**",
       },
       {
@@ -22,7 +22,7 @@ const nextConfig = {
       // Production API / Image Server
       {
         protocol: "https",
-        hostname: process.env.NEXT_PUBLIC_BACKEND_DOMAIN, // ← replace with your real backend domain
+        hostname: process.env.NEXT_PUBLIC_BACKEND_DOMAIN || "example.com", // ← replace with your real backend domain
         pathname: "/**",
       },
     ],
