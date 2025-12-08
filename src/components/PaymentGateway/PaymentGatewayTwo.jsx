@@ -67,13 +67,15 @@ const PaymentGatewayTwo = () => {
                 }}
               >
                 <div className="bg-img">
-                  <Image
-                    width={5000}
-                    height={5000}
-                    className="w-full"
-                    src={`${IMAGE_BASE_URL}/${gatewaytwo.image}`}
-                    alt="image"
-                  />
+                  {gatewaytwo.image && (
+                    <Image
+                      width={5000}
+                      height={5000}
+                      className="w-full"
+                      src={`${IMAGE_BASE_URL}/${gatewaytwo.image}`}
+                      alt="image"
+                    />
+                  )}
                 </div>
                 <div
                   className="feature-item py-4 px-6 rounded-2xl 

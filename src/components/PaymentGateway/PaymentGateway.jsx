@@ -41,13 +41,15 @@ const PaymentGateway = () => {
           className="bg-img lg:absolute top-0 left-0 lg:w-1/2 w-full
                 h-full flex-shrink-0"
         >
-          <Image
-            src={`${IMAGE_BASE_URL}/${gatewayone.image}`}
-            width={5000}
-            height={5000}
-            alt="img"
-            className="w-full h-full object-cover"
-          />
+          {gatewayone.image && (
+            <Image
+              src={`${IMAGE_BASE_URL}/${gatewayone.image}`}
+              width={5000}
+              height={5000}
+              alt="img"
+              className="w-full h-full object-cover"
+            />
+          )}
         </div>
 
         <div className="container w-full lg:py-[150px] pt-14 py-16">
