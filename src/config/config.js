@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://backend.test/api";
-const IMAGE_BASE_URL = "http://backend.test";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
 
 export { API_BASE_URL, IMAGE_BASE_URL };
