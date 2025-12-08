@@ -87,6 +87,7 @@ const BlogList = () => {
 
                   return (
                     <Link
+                      key={index}
                       className="blog-item flex max-md:flex-col md:items-center gap-7 gap-y-5"
                       href={"/blog/blog-details/[slug]"}
                       as={`/blog/blog-details/${item.post_slug
@@ -100,6 +101,7 @@ const BlogList = () => {
                             height={5000}
                             className="w-full h-full block"
                             src={`${IMAGE_BASE_URL}/${item.image}`}
+                            alt={item.post_title}
                           />
                         </div>
                       </div>
@@ -194,6 +196,7 @@ const BlogList = () => {
                         height={5000}
                         src={`${IMAGE_BASE_URL}/${item.image}`}
                         className="w-full h-full object-cover"
+                        alt={item.post_title}
                       />
                     </div>
 

@@ -61,7 +61,10 @@ const Testimonial = () => {
                   }}
                 >
                   {testimonial.slice(0, 3).map((item, index) => (
-                    <SwiperSlide className="lg:pb-24 pb-20">
+                    <SwiperSlide
+                      key={item.id || index}
+                      className="lg:pb-24 pb-20"
+                    >
                       <div className="text-2xl font-medium text-center">
                         {String.raw`"`}
                         {item.message}
